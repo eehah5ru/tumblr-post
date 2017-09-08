@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+. ~/.zshrc
+
+rvm ruby-2.4 do ruby $HOME/bin/tumblr-post.rb -b "$1" -t link "$2" >> ~/log/hazel-scripts.log 2>&1

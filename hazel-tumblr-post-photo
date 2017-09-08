@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rvm ruby-2.4 do ruby $HOME/bin/tumblr-post.rb -b "$1" -t photo "$2" >> ~/log/hazel-scripts.log 2>&1
