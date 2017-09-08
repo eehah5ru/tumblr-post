@@ -29,3 +29,11 @@ tumblr_auth:
 ```
 4. Encrypt `~/.tumblr.yml` with GPGTools using your key
 5. Remove unencrypted version of `~/.tumblr.yml`
+
+# Hazel integration
+
+You can use hazel to post images to your blog just by dragging images to the folder on your desktop. Just import hazel rules from `hazel` folder and edit them to use your blog.
+
+# Alfred integration
+
+You can use alfred as a shortcut to post quotes and links to your blog using alfred's workflow feature. To do that import alfred's workflows from `alfred` folder and edit them to meet your needs.
