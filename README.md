@@ -1,3 +1,5 @@
+This is a bunch of small scripts which allow to post thing on the tumblr blog from command line or using Hazel for images and Alfred for quotes and links.
+
 # Requirements
 - mac os
 - GPGTools
