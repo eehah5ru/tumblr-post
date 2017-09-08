@@ -14,7 +14,7 @@ This is a bunch of small scripts which allow to post thing on the tumblr blog fr
 
 # Installation
 
-0. Register an app on tumblr: [https://www.tumblr.com/docs/en/api/v2]
+0. [Register an app on tumblr](https://www.tumblr.com/docs/en/api/v2)
 0. Clone this repo to your local machine.
 1. Edit install.sh script to install required things.
 2. run `python oauth_tumblr.py`
