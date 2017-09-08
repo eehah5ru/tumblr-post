@@ -15,6 +15,17 @@ require "pp"
 
 
 
+module Dialog
+  def slurp_from_dialog a_caption
+    raw = IO.popen(%(osascript -e ' display dialog "#{a_caption}" default answer ""')).read
+
+    return "" if raw.empty?
+    return "" unless raw =~ /OK/
+    return raw.gsub(/button returned:OK, text returned:/, "")
+
+  end
+end
+
 module TumblrPostOptsParser
   def self.parse!
     opts = OpenStruct.new
@@ -207,6 +218,8 @@ module Post
   #
   #
   class PhotoPost < AbstractPost
+    include Dialog
+
     def parse_argv! argv
       raise OptionParser::MissingArgument, "PHOTO_PATH" if argv.empty?
       options.photo_path = argv[0]
@@ -218,7 +231,7 @@ module Post
     end
 
     def post client
-      client.photo config.blog_url, data: [options.photo_path]
+      client.photo config.blog_url, data: [options.photo_path], caption: slurp_from_dialog("Photo caption/source:")
     end
   end
 
@@ -228,6 +241,8 @@ module Post
   #
   #
   class QuotePost < AbstractPost
+    include Dialog
+
     def parse_argv! argv
       raise OptionParser::MissingArgument, "QUOTE" if argv.empty?
       options.quote = argv[0]
@@ -240,17 +255,7 @@ module Post
 
 
     def post client
-      client.quote config.blog_url, quote: options.quote, source: read_source
-    end
-
-    private
-
-    def read_source
-      raw = IO.popen(%(osascript -e ' display dialog "What is your name?" default answer ""')).read
-
-      return "" if raw.empty?
-      return "" unless raw =~ /OK/
-      return raw.gsub(/button returned:OK, text returned:/, "")
+      client.quote config.blog_url, quote: options.quote, source: slurp_from_dialog("Quote source:")
     end
   end
 
